@@ -1,56 +1,49 @@
-const luana = {
-    cliente: "Luana",
-    idade: 27,
-    compras: [
-        { nome: "Notebook", preco: "R$ 2500" },
-        { nome: "Geladeira", preco: "R$ 3000" },
-        { nome: "Smatphone", preco: "R$ 1500" },
-    ],
-    ativa: true,
-};
-
-const mario = {
-    cliente: "Mario",
-    idade: 31,
-    compras: [
-        { nome: "Notebook", preco: "R$ 2500" },
-        { nome: "Geladeira", preco: "R$ 3000" },
-        { nome: "Smatphone", preco: "R$ 1500" },
-        { nome: "Guitarra", preco: "R$ 3500" },
-    ],
-    ativa: false,
-};
-
-const estiloAtivo = {
-    color: "green",
-};
-
-const estiloInativo = {
-    color: "red",
-};
+const produtos = [
+    {
+        id: 1,
+        nome: "Smartphone",
+        preco: "R$ 2000",
+        cores: ["#29d8d5", "#252a32", "#fc3766"],
+    },
+    {
+        id: 2,
+        nome: "Notebook",
+        preco: "R$ 3000",
+        cores: ["#365069", "#47c1c8", "#f95786"],
+    },
+    {
+        id: 3,
+        nome: "Tablet",
+        preco: "R$ 1500",
+        cores: ["#ffd045", "#d4394b", "#f37c59"],
+    },
+];
 
 export const App = () => {
-    const cliente = luana;
-
-    const gastos = cliente.compras.reduce((acc, compra) => {
-        return acc + Number(compra.preco.split(" ")[1]);
-    }, 0);
-
     return (
         <>
-            <h1>Cliente: </h1>
-            <h3>Nome: {cliente.cliente}</h3>
-            <h3>Idade: {cliente.idade}</h3>
-            <h3>
-                Situação:{" "}
-                <span style={cliente.ativa ? estiloAtivo : estiloInativo}>
-                    {cliente.ativa ? "Ativa" : "Inativa"}
-                </span>
-            </h3>
-            <h3>Total Gasto: R$ {gastos}</h3>
-            <h3 style={{ marginTop: "2rem", fontSize: "2rem" }}>
-                {gastos >= 10000 && "Você está gastanto muito"}
-            </h3>
+            <h1>Produtos</h1>
+            <ul>
+                {produtos.map((produto) => (
+                    <li key={produto.id}>
+                        <h2>{produto.nome}</h2>
+                        <h3>Preço: {produto.preco}</h3>
+                        {produto.cores.map((cor, index) => (
+                            <p
+                                key={index}
+                                style={{
+                                    background: cor,
+                                    display: "block",
+                                    color: "white",
+                                    padding: ".25rem",
+                                }}
+                            >
+                                {cor}
+                            </p>
+                        ))}
+                    </li>
+                ))}
+            </ul>
         </>
     );
 };

@@ -1,49 +1,78 @@
 const produtos = [
     {
-        id: 1,
-        nome: "Smartphone",
-        preco: "R$ 2000",
-        cores: ["#29d8d5", "#252a32", "#fc3766"],
-    },
-    {
-        id: 2,
         nome: "Notebook",
-        preco: "R$ 3000",
-        cores: ["#365069", "#47c1c8", "#f95786"],
+        propriedades: ["16gb RAM", "512gb"],
     },
     {
-        id: 3,
-        nome: "Tablet",
-        preco: "R$ 1500",
-        cores: ["#ffd045", "#d4394b", "#f37c59"],
+        nome: "Smartphone",
+        propriedades: ["2gb RAM", "128gb"],
     },
 ];
 
-export const App = () => {
+const Titulo = ({ texto }) => {
+    return <h1 style={{ color: "green" }}>{texto}</h1>;
+};
+
+const Produto = ({ produto }) => {
     return (
-        <>
-            <h1>Produtos</h1>
+        <li>
+            <h3>{produto.nome}</h3>
             <ul>
-                {produtos.map((produto) => (
-                    <li key={produto.id}>
-                        <h2>{produto.nome}</h2>
-                        <h3>Preço: {produto.preco}</h3>
-                        {produto.cores.map((cor, index) => (
-                            <p
-                                key={index}
-                                style={{
-                                    background: cor,
-                                    display: "block",
-                                    color: "white",
-                                    padding: ".25rem",
-                                }}
-                            >
-                                {cor}
-                            </p>
-                        ))}
-                    </li>
+                {produto.propriedades.map((propriedade) => (
+                    <li key={propriedade}>{propriedade}</li>
                 ))}
             </ul>
+        </li>
+    );
+};
+
+const ListaProdutos = ({ produtos }) => {
+    return (
+        <>
+            <Titulo texto="Produtos" />
+            <ul>
+                {produtos.map((produto, index) => (
+                    <Produto produto={produto} key={produto.nome} />
+                ))}
+            </ul>
+        </>
+    );
+};
+
+const Home = () => {
+    return (
+        <div>
+            <Titulo texto="Home" />
+            <p>Essa é a home do site</p>
+        </div>
+    );
+};
+
+const Link = ({ label, ...rest }) => {
+    return (
+        <a href="/" style={{ display: "block", color: "blue" }} {...rest}>
+            {label}
+        </a>
+    );
+};
+
+export const App = () => {
+    const { pathname } = window.location;
+
+    return (
+        <>
+            <h1>Desafio de components</h1>
+
+            <Link label="Home" />
+            <Link label="Produtos" href="/produtos" />
+
+            <main>
+                {pathname === "/produtos" ? (
+                    <ListaProdutos produtos={produtos} />
+                ) : (
+                    <Home />
+                )}
+            </main>
         </>
     );
 };

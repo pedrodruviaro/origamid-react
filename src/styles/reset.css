@@ -86,7 +86,10 @@ h6 {
     line-height: 1.2;
 }
 
-p,
+p {
+    line-height: 1.2;
+}
+
 span,
 a {
     display: inline-block;

@@ -1,6 +1,6 @@
 # Origamid React
 
-`Conteúdos vistos até o momento`
+`Conteúdos vistos até o momento:`
 
--   Revisão dos princípios do React
--   React Hooks
+-   Revisão dos **princípios** do React
+-   React **Hooks**

@@ -1,9 +1,9 @@
-import { Formularios } from "./Formularios";
+import { DesafioFormularios } from "./DesafioFormularios";
 
 export const App = () => {
     return (
         <>
-            <Formularios />
+            <DesafioFormularios />
         </>
     );
 };

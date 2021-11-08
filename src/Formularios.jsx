@@ -1,58 +1,40 @@
-import { useState } from "react";
 import { Input } from "./components/Input";
-import { Select } from "./components/Select";
-import { Radio } from "./components/Radio";
-import { Checkbox } from "./components/Checkbox";
+import { useForm } from "./hooks/useForm";
 
 export const Formularios = () => {
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [produto, setProduto] = useState("");
-    const [cor, setCor] = useState("");
-    const [linguagens, setLinguagens] = useState([]);
+    const cep = useForm("cep");
+    const email = useForm("email");
+    const nome = useForm(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ nome, email, produto, cor, linguagens });
+        if (cep.validate() && email.validate()) {
+            console.log("enviar");
+        } else {
+            console.log("nao enviar");
+        }
     };
 
     return (
         <div>
             <h1>Formularios em React</h1>
             <form onSubmit={handleSubmit}>
-                <Checkbox
-                    options={["JS", "Python", "Ruby"]}
-                    value={linguagens}
-                    setValue={setLinguagens}
-                />
-
-                <Radio
-                    options={["Azul", "Vermelho"]}
-                    value={cor}
-                    setValue={setCor}
-                />
-
-                <Select
-                    options={["notebook", "smatphone", "tablet"]}
-                    value={produto}
-                    setValue={setProduto}
-                    required
+                <Input type="text" label="Nome" id="nome" {...nome} />
+                <Input
+                    type="text"
+                    label="CEP"
+                    id="cep"
+                    placeholder="00000-000"
+                    {...cep}
                 />
 
                 <Input
-                    label="Nome"
-                    id="nome"
-                    value={nome}
-                    setValue={setNome}
-                    required
-                />
-                <Input
+                    type="email"
                     label="Email"
                     id="email"
-                    value={email}
-                    setValue={setEmail}
+                    placeholder="email@something.com"
+                    {...email}
                 />
-
                 <button type="submit">Enviar</button>
             </form>
         </div>

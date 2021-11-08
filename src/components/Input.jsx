@@ -1,14 +1,25 @@
-export const Input = ({ label, id, value, setValue, ...rest }) => {
+export const Input = ({
+    label,
+    id,
+    value,
+    onChange,
+    onBlur,
+    type,
+    placeholder,
+    error,
+}) => {
     return (
         <>
             <label htmlFor={id}>{label}</label>
             <input
-                type="text"
+                type={type}
                 id={id}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
-                {...rest}
+                placeholder={placeholder}
+                onChange={onChange}
+                onBlur={onBlur}
             />
+            {error && <p>{error}</p>}
         </>
     );
 };

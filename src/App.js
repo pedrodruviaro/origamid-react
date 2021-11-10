@@ -1,9 +1,7 @@
-import { Formularios } from "./Formularios";
-
 export const App = () => {
     return (
         <>
-            <Formularios />
+            <h1>React app</h1>
         </>
     );
 };

@@ -1,0 +1,19 @@
+.animate-left {
+    animation: animate-left 200ms forwards;
+}
+
+@keyframes animate-left {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: initial;
+        opacity: 1;
+    }
+}
+
+/* -------------------------- */
+img {
+    max-width: 150px;
+}

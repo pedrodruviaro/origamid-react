@@ -115,10 +115,3 @@ textarea {
     font-size: 1rem;
     padding: 0.5rem;
 } */
-label {
-    display: flex;
-}
-body {
-    background-color: #333;
-    color: #fdfdfd;
-}

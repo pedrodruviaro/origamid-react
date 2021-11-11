@@ -3,26 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { Input } from "../Form/Input";
 import { Button } from "../Form/Button";
-import { TOKEN_POST, USER_GET } from "../../api";
-import { useEffect } from "react";
-
-async function getUser(token) {
-    const { url, options } = USER_GET(token);
-    const response = await fetch(url, options);
-    const data = await response.json();
-    console.log(data);
-}
+import { useUser } from "../../hooks/useUser";
 
 export const LoginForm = () => {
     const username = useForm();
     const password = useForm();
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            getUser(token);
-        }
-    }, []);
+    const { userLogin, error, loading } = useUser();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -31,16 +18,7 @@ export const LoginForm = () => {
             return;
         }
 
-        const { url, options } = TOKEN_POST({
-            username: username.value,
-            password: password.value,
-        });
-
-        const response = await fetch(url, options);
-        const data = await response.json();
-
-        localStorage.setItem("token", data.token);
-        getUser(data.token);
+        userLogin(username.value, password.value);
     }
 
     return (
@@ -61,7 +39,12 @@ export const LoginForm = () => {
                     {...password}
                 />
 
-                <Button type="submit">Entrar</Button>
+                {loading ? (
+                    <Button disabled>Carregando</Button>
+                ) : (
+                    <Button type="submit">Entrar</Button>
+                )}
+                {error && <p>{error}</p>}
             </form>
             <Link to="/login/criar">Cadastro</Link>
         </section>

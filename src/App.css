@@ -1,0 +1,21 @@
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+
+    color: #333;
+
+    --type-first: Helvetica, Arial, sans-serif;
+    --type-second: "Spectral", Georgia;
+
+    font-family: var(--type-first);
+
+    /* calculating header size */
+    padding-top: 4rem;
+}
+
+.container {
+    max-width: 50rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}

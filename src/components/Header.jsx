@@ -21,10 +21,10 @@ export const Header = () => {
                 ) : (
                     <Link className={styles.login} to="/login">
                         Login / Criar
+                        <button onClick={userLogout}>userLogout</button>
                     </Link>
                 )}
             </nav>
-            <button onClick={userLogout}>userLogout</button>
         </header>
     );
 };

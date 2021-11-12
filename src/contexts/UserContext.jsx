@@ -18,7 +18,7 @@ export const UserContextProvider = ({ children }) => {
             setData(null);
             setError(null);
             setLoading(false);
-            setLogin(null);
+            setLogin(false);
             localStorage.removeItem("token");
             navigate("/login");
         },
@@ -44,6 +44,8 @@ export const UserContextProvider = ({ children }) => {
                 } finally {
                     setLoading(false);
                 }
+            } else {
+                setLogin(false);
             }
         }
 
@@ -56,7 +58,6 @@ export const UserContextProvider = ({ children }) => {
         const data = await response.json();
         setData(data);
         setLogin(true);
-        console.log(data);
     }
 
     async function userLogin(username, password) {
